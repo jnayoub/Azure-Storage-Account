@@ -1,6 +1,6 @@
 const multer = require('multer');
 const stream = require('stream');
-const blobServiceClient = require('../connections/azureStorageAccount');
+const blobServiceClient = require('../../connections/azureStorageAccount');
 
 const upload = multer({ storage: multer.memoryStorage() });
 const containerName = 'storage-container-1';

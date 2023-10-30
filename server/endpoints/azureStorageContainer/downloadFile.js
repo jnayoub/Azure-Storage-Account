@@ -1,4 +1,4 @@
-const blobServiceClient = require('../connections/azureStorageAccount');
+const blobServiceClient = require('../../connections/azureStorageAccount');
 const containerName = 'storage-container-1';
 
 async function downloadFile(req, res) {

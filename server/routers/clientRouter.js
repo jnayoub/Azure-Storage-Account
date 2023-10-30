@@ -27,4 +27,8 @@ router.get('/download', (req, res) => {
 router.get('/list', (req, res) => {
     res.sendFile(path.join(clientFolderPath, 'pages/file-list.html'))
 })
+
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(clientFolderPath, 'pages/login.html'))
+})
 module.exports = router;
