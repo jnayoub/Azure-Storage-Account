@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await fetch('/api/upload', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                credentials: 'include'
             });
 
             if (response.status === 200) {
