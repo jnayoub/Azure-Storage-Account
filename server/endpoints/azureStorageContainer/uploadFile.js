@@ -22,7 +22,15 @@ async function uploadFile(req, res) {
 
         await blockBlobClient.uploadStream(readableStream);
 
-        res.send('File uploaded successfully!');
+        res.json({
+            success: true,
+            result: {
+                blobName: blobName,
+                blobUrl: `https://${process.env.AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${containerName}/${blobName}`
+            },
+            message: 'File uploaded successfully.',
+            redirect: '/'
+        });
     });
 }
 

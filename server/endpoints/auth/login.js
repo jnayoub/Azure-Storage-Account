@@ -1,23 +1,24 @@
 const jwt = require("jsonwebtoken");
-const db = require("../../connections/database/mongo/mongodb-connection");
 
 const express = require("express");
-const userRouter = express.Router();
-userRouter.use(express.json());
+const router = express.Router();
+router.use(express.json());
 
+const mongoose = require("mongoose")
 const userSchema = require("../../connections/database/mongo/schemas/user-schema");
+const UserModel = mongoose.model("User", userSchema, "users");
 
 const cors = require("cors");
 
 const bcrypt = require("bcrypt");
 
-userRouter.use(
+router.use(
   cors({
     origin: "*",
   })
 );
 
-userRouter.post("/", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const { userName, userPassword } = req.body;
     if (!userName || !userPassword) {
@@ -27,7 +28,7 @@ userRouter.post("/", async (req, res, next) => {
       });
     }
 
-    const user = await userSchema.findOne({ userName });
+    const user = await UserModel.findOne({ userName });
     if (!user) {
       return res.status(401).json({ message: "User does not exist!" });
     }
@@ -52,4 +53,4 @@ userRouter.post("/", async (req, res, next) => {
   }
 });
 
-module.exports = userRouter;
+module.exports = router;

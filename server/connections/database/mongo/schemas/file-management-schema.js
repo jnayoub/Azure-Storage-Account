@@ -1,31 +1,35 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  userName: {
+const fileManagementSchema = new mongoose.Schema({
+  storedFileName: {
     type: String,
     required: true,
   },
-  userEmail: {
+  originalFileName: {
     type: String,
     required: true,
   },
-  userPassword: {
+  type: {
     type: String,
     required: true,
   },
-  userInfo: {
-    type: Object,
+  extension: {
+    type: String,
     required: true,
   },
-  permissions: {
+  uploader: {
+    type: String,
+    required: true,
+  },
+  tags: {
     type: Array,
     required: true,
   },
-  createdAt: {
+  uploadDate: {
     type: Date,
     required: true,
     default: Date.now,
   },
 });
 
-module.exports = userSchema;
+module.exports = fileManagementSchema;
