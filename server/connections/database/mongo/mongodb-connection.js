@@ -1,11 +1,8 @@
-const dotenv = require("dotenv");
-dotenv.config();
-
 const mongoose = require("mongoose");
 
 async function connectToMongoDB() {
   try {
-    await mongoose.connect(process.env.MONGOCONNECTIONSTRING + "app", {
+    await mongoose.connect(process.env.MONGOCONNECTIONSTRING + "azure-storage", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const checkAuth = require('../middleware/checkAuth');
 
-const getUser = require('../endpoints/auth/login');
+const cors = require('cors');
+router.use(cors());
 
-router.use('/login', getUser);
+const generateToken = require('../endpoints/auth/generate-token');
+
+router.post('/generateToken', generateToken);
 
 module.exports = router;

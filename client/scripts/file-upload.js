@@ -1,35 +1,39 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const fileInput = document.getElementById('file-input');
-    const uploadBtn = document.getElementById('upload-btn');
-    const uploadStatus = document.getElementById('upload-status');
+document.getElementById("upload-button").addEventListener("click", function() {
+  const fileInput = document.getElementById("file-input");
+  
+  // Ensure there's a file selected
+  if (!fileInput.files || fileInput.files.length === 0) {
+      alert("Please select a file.");
+      return;
+  }
 
-    uploadBtn.addEventListener('click', async function() {
-        const file = fileInput.files[0];
+  const file = fileInput.files[0];
+  const formData = new FormData();
 
-        if (!file) {
-            uploadStatus.textContent = 'Please select a file first.';
-            return;
-        }
+  // Append the file to the FormData object
+  formData.append("file", file);
 
-        const formData = new FormData();
-        formData.append('file', file);
+  // Append additional data
+  formData.append("displayName", "RandomDisplayName");
+  formData.append("uploader", "RandomUploader");
+  formData.append("tags", JSON.stringify(["tag1", "tag2"]));
+  formData.append("type", "RandomType");
+  formData.append("collectionID", 1234);
+  formData.append("metadata", JSON.stringify({ additional: "info" }));
 
-        try {
-            const response = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData,
-                credentials: 'include'
-            });
-
-            if (response.status === 200) {
-                const message = await response.text();
-                uploadStatus.textContent = message;
-            } else {
-                const error = await response.text();
-                uploadStatus.textContent = 'Error uploading file: ' + error;
-            }
-        } catch (err) {
-            uploadStatus.textContent = 'Error uploading file: ' + err.message;
-        }
-    });
+  fetch("api/upload", { // Replace "/upload" with your actual endpoint
+      method: "POST",
+      body: formData,
+      // Note: Don't set Content-Type header for FormData,
+      // it's automatically set by the browser including the boundary parameter
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log("Success:", data);
+      // Handle success
+  })
+  .catch(error => {
+      console.error("Error:", error);
+      // Handle errors
+  });
 });

@@ -14,19 +14,19 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(clientFolderPath, 'pages/home.html'));
 });
 
-router.get('/admin', checkAuth, (req, res) => {
+router.get('/admin', (req, res) => {
     res.sendFile(path.join(clientFolderPath, 'pages/admin.html'));
 });
 
-router.get('/upload', checkAuth, (req, res) => {
+router.get('/upload', (req, res) => {
     res.sendFile(path.join(clientFolderPath, 'pages/file-upload.html'));
 });
 
-router.get('/download', checkAuth, (req, res) => {
+router.get('/download', (req, res) => {
     res.sendFile(path.join(clientFolderPath, 'pages/file-download.html'))
 })
 
-router.get('/list', checkAuth, (req, res) => {
+router.get('/list', (req, res) => {
     res.sendFile(path.join(clientFolderPath, 'pages/file-list.html'))
 })
 

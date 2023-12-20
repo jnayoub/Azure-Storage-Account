@@ -1,36 +1,43 @@
-window.addEventListener('DOMContentLoaded', () => {
-    const downloadButton = document.getElementById('download-btn');
-    const filenameInput = document.getElementById('filename-input');
-    const downloadedContentDiv = document.getElementById('downloaded-content');
+async function downloadFile(filename) {
+  const downloadedContentDiv = document.getElementById("downloaded-content");
 
-    downloadButton.addEventListener('click', async () => {
-        const filename = filenameInput.value;
-        
-        if (!filename) {
-            alert('Please enter a filename to download.');
-            return;
-        }
+  if (!filename) {
+    alert("Please enter a filename to download.");
+    return;
+  }
 
-        try {
-            const response = await fetch(`/api/download/${filename}`);
+  try {
+    const response = await fetch(`/api/download/${filename}`);
+    if (!response.ok) {
+      alert("Error downloading file.");
+      return;
+    }
 
-            if (!response.ok) {
-                alert('Error downloading file.');
-                return;
-            }
+    const blob = await response.blob();
+    console.log(blob);
+    const fileUrl = URL.createObjectURL(blob);
 
-            const blob = await response.blob();
+    downloadedContentDiv.innerHTML = "";
 
-            const imageUrl = URL.createObjectURL(blob);
-
-            // Remove existing content and display the new image.
-            downloadedContentDiv.innerHTML = "";
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            downloadedContentDiv.appendChild(img);
-            
-        } catch (err) {
-            alert('Error occurred:', err.message);
-        }
-    });
-});
+    // Determine the file type and handle accordingly
+    if (blob.type.startsWith("image/")) {
+      const img = document.createElement("img");
+      img.src = fileUrl;
+      downloadedContentDiv.appendChild(img);
+    } else if (blob.type.startsWith("video/")) {
+      const video = document.createElement("video");
+      video.src = fileUrl;
+      video.controls = true;
+      downloadedContentDiv.appendChild(video);
+    } else {
+      // Handle other file types (e.g., PDF, text)
+      const fileLink = document.createElement("a");
+      fileLink.href = fileUrl;
+      fileLink.innerText = "Download File";
+      fileLink.download = filename;
+      downloadedContentDiv.appendChild(fileLink);
+    }
+  } catch (err) {
+    alert("Error occurred:", err.message);
+  }
+}

@@ -10,12 +10,8 @@
 <body>
     <h2>Download File</h2>
     
-    <div class="download-section">
-        <input type="text" id="filename-input" placeholder="Enter file name...">
-        <button id="download-btn">Download</button>
-    </div>
-
-    <!-- Container for the downloaded content -->
+    <input type="text" id="filename-input" placeholder="Enter filename">
+    <button id="download-btn" onclick="downloadFile(document.getElementById('filename-input').value)">Download</button>
     <div id="downloaded-content"></div>
 
 </body>
