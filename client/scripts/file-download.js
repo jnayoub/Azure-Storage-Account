@@ -7,9 +7,9 @@ async function downloadFile(filename) {
   }
 
   try {
-    const response = await fetch(`/api/download/${filename}`);
+    const response = await fetch(`/file-server/download/${filename}`);
     if (!response.ok) {
-      alert("Error downloading file.");
+      alert(`Error downloading file: ${response.statusText}`);
       return;
     }
 
@@ -38,6 +38,6 @@ async function downloadFile(filename) {
       downloadedContentDiv.appendChild(fileLink);
     }
   } catch (err) {
-    alert("Error occurred:", err.message);
+    alert(`Error occurred: ${err.message}`);
   }
 }

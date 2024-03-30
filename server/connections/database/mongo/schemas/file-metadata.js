@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
-const fileManagementSchema = new mongoose.Schema({
-  uniqueFileName: {
+const fileMetadataSchema = new mongoose.Schema({
+  systemFileName: {
     type: String,
     required: true,
   },
-  displayName: {
+  userFriendlyName: {
     type: String,
     required: true,
   },
-  collectionID: {
+  parentCollectionId: {
     type: Number,
     required: true,
   },
@@ -17,42 +17,37 @@ const fileManagementSchema = new mongoose.Schema({
     type: Array,
     required: false,
   },
-  extension: {
+  fileExtension: {
     type: String,
     required: true,
   },
-  type: {
+  fileType: {
     type: String,
     required: true,
   },
-  blobPath: {
+  storagePath: {
     type: String,
     required: true,
   },
-  checksum: {
+  fileChecksum: {
     type: String,
     required: false,
   },
-  uploader: {
+  uploadedBy: {
     type: String,
     required: false,
   },
-  uploadDate: {
+  dateUploaded: {
     type: Date,
     required: true,
     default: Date.now,
   },
-  metadata: {
+  additionalMetadata: {
     type: Object,
     required: false,
   },
-  downloadCount: {
-    type: Number,
-    required: false,
-  }
 });
 
+const fileMetadata = mongoose.model('File-Metadata', fileMetadataSchema);
 
-const fileManagement = mongoose.model('file-system', fileManagementSchema);
-
-module.exports = fileManagement;
+module.exports = fileMetadata;

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 async function connectToMongoDB() {
   try {
-    await mongoose.connect(process.env.MONGOCONNECTIONSTRING + "azure-storage", {
+    await mongoose.connect(process.env.MONGOCONNECTIONSTRING + "personal", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

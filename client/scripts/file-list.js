@@ -1,16 +1,34 @@
 let jsonFormatter;
+
 async function listFiles() {
-  console.log("listFiles");
-  const response = await fetch("/api/list-files");
-  if (!response.ok) {
-    window.location.href = "/unauthorized";
-    console.error("Network response was not ok.");
+  console.log("listFiles endpoint hit.");
+  try {
+      const response = await fetch("/file-server/list-files", {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+          },
+      });
+
+      if (!response.ok) {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+          // Optionally, log the response body
+          const responseBody = await response.text();
+          console.error(responseBody);
+      } else {
+    const responseJSON = await response.json();
+    console.log(responseJSON);
+
+    // If the JSON structure has changed in the backend, adjust the handling here
+    jsonFormatter = new JSONFormatter(responseJSON);
+    document.getElementById("file-list-display").innerHTML = ''; // Clear existing content
+    document.getElementById("file-list-display").appendChild(jsonFormatter.render());
+      }
+  } catch (error) {
+    console.error("Error in listFiles:", error.message);
   }
-  const responseJSON = await response.json();
-  console.log(responseJSON);
-  jsonFormatter = new JSONFormatter(responseJSON);
-  document.getElementById("file-list-display").appendChild(jsonFormatter.render());
 }
+
 function toggleExpand() {
   if (jsonFormatter) {
     if (jsonFormatter.openAtDepth === Infinity) {
