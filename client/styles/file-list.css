@@ -1,3 +1,224 @@
 body {
-    background-color: whjite;
+  font-family: sans-serif;
+  background-color: #222;
+  /* Dark background */
+  color: #eee;
+  /* Light text */
+}
+
+.file-list-app {
+  width: 100%;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
+  /* Prevent stacking */
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar label {
+  margin-right: 10px;
+}
+
+.search-bar input {
+  padding: 8px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+
+.search-bar button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.search-bar button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+#search-by-label {
+  padding-right: 10px;
+}
+
+.file-list-container {
+  width: 100%;
+}
+
+.list-header,
+.list-item {
+  display: flex;
+  background-color: #333;
+  font-weight: bold;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* Wrap headers on small screens */
+}
+
+.file-item {
+  display: flex;
+  padding: 10px;
+  background-color: #444;
+  margin-top: 5px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* Allows wrapping on smaller screens */
+}
+
+.file-item:nth-child(odd) {
+  background-color: #555;
+}
+
+.filename {
+  padding: 5px 10px;
+  flex: 0.7;
+  min-width: 80px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.collection {
+  padding: 5px 10px;
+  flex: 0.5;
+  min-width: 80px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.tags {
+  padding: 5px 10px;
+  flex: 1;
+  min-width: 80px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.upload-date {
+  padding: 5px 10px;
+  flex: 0.2;
+  min-width: 80px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.file-type {
+  padding: 5px 10px;
+  flex: 0;
+  min-width: 80px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.file-size {
+  padding: 5px 10px;
+  flex: 0;
+  min-width: 80px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.file-id {
+  padding: 5px 10px;
+  flex: 0;
+  min-width: 80px;
+  text-overflow: ellipsis;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.column {
+  border: 1px solid;
+}
+
+.pagination-container {
+  position: fixed;
+  bottom: 65px;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-container button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-container button:hover {
+  background-color: #0056b3;
+}
+
+.pagination-container button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination-container span {
+  margin: 0 10px;
+}
+
+.file-list-container {
+  position: relative;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px; /* Ensure the container has enough height */
+}
+
+#loadingSpinner {
+  border: 8px solid rgba(0, 0, 0, 0.1); /* Light grey border */
+  border-top: 8px solid rgba(255, 255, 255, 0.8); /* White color for the spinner */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -34px; /* Half of (height + border) */
+  margin-left: -34px; /* Half of (width + border) */
+  z-index: 10;
+  opacity: 0.7; /* Slight transparency */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.file-list .list-item {
+  z-index: 0; /* Ensure that list items don't overlap the loading indicator */
 }

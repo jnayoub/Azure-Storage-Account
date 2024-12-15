@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-//endpoints
-const uploadFile = require('../endpoints/azureStorageContainer/uploadFile');
-const listFiles = require('../endpoints/azureStorageContainer/listFiles');
-const downloadFile = require('../endpoints/azureStorageContainer/downloadFile');
-//routes
+const uploadFile = require('../endpoints/upload-file');
+const listFiles = require('../endpoints/list-files');
+const downloadFile = require('../endpoints/download-file');
+const getFileMetadata = require('../endpoints/find-file');
+const filesAdminFindFile = require('../endpoints/files-admin-find-file');
+const filesAdminEditFile = require('../endpoints/files-admin-edit-file');
+
 router.post('/upload', uploadFile);
 router.get('/list-files', listFiles);
-router.get('/download/:filename', downloadFile);
-
+router.post('/download', downloadFile);
+router.post('/find-file', getFileMetadata);
+router.post('/file-admin/find-file', filesAdminFindFile);
+router.post('/file-admin/edit-file', filesAdminEditFile);
 module.exports = router;

@@ -4,19 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/home.css">
-    <script src="../scripts/home.js" defer="true"></script>
+    <link rel="stylesheet" href="../styles/popup.css">
+    <link rel="stylesheet" href="../styles/file-upload.css">
+    <link rel="stylesheet" href="../styles/file-list.css">
+    <link rel="stylesheet" href="../styles/file-download.css">
+    <link rel="stylesheet" href="../styles/admin.css">
+    <script src="../scripts/helper-functions.js" defer="true"></script>
+    <script src="../scripts/file-upload-fetch.js" defer="true"></script>
+    <script src="../scripts/file-upload-dom.js" defer="true"></script>
+    <script src="../scripts/file-list-dom.js" defer="true"></script>
+    <script src="../scripts/file-list-fetch.js" defer="true"></script>
+    <script src="../scripts/download-dom.js" defer="true"></script>
+    <script src="../scripts/download-fetch.js" defer="true"></script>
+    <script src="../scripts/utility-functions.js" defer="true"></script>
+    <script src="../scripts/admin-dom.js" defer="true"></script>
+    <script src="../scripts/admin-fetch.js" defer="true"></script>
+    <script src="../scripts/popup.js" defer="true"></script>
     <title>Home Page</title>
 </head>
-<body>
-    <h1>Home Page</h1>
-    
-    <nav>
-        <ul>
-            <li><a href="/download">Download</a></li>
-            <li><a href="/list">List</a></li>
-            <li><a href="/upload">Upload</a></li>
-        </ul>
-    </nav>
+<body>  
+    <div class="container">
+        <header>
+            <h1>File Upload Client</h1>
+        </header>
+        <div class="instructions">
+            <p>Use the links below to download files (by file ID), upload new files, or view the list of files that have been uploaded.</p>
+        </div>
+        <div class="action-buttons">
+            <div id="action-button-download" class="action-button">
+                <p>Download</p>
+            </div>
+            <div id="action-button-list" class="action-button">
+                <p>List</p>
+            </div>
+            <div id="action-button-upload" class="action-button">
+                <p>Upload</p>
+            </div>
+            <div id="action-button-admin" class="action-button">
+                <p>Admin</p>
+        </div>
+    </div>
 
 </body>
 </html>
