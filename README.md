@@ -1,5 +1,7 @@
 Preview at https://jayoub-azure-storage-account-6510d8946967.herokuapp.com/
 
+User File ID:Admin Password combo SLXrLJL:5yf0b9s to preview Admin page or upload file. 
+
 Resource Stack
  - NodeJS - Client and Server Code
  - MongoDB Database - For Metadata and Uplaod DB
