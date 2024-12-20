@@ -1,6 +1,6 @@
 Preview at https://jayoub-azure-storage-account-6510d8946967.herokuapp.com/
 
-Use File ID:Admin Password combo SLXrLJL:5yf0b9s to preview Admin page or upload file. 
+Use File ID:Admin Password combo SLXrLJL:5yf0b9s or upload a file to preview Admin page. 
 
 Resource Stack
  - NodeJS - Client and Server Code
