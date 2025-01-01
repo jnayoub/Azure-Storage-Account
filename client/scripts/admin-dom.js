@@ -12,7 +12,7 @@ function createAdminDOM() {
   fileIDInput.setAttribute("name", "fileIDInput");
   fileIDInput.classList.add("admin-input-text");
   fileIDInput.setAttribute("placeholder", "File ID");
-
+  adminDOM.appendChild(fileIDInput);
   
   const adminPasswordInput = document.createElement("input");
   adminPasswordInput.setAttribute("type", "text");
@@ -20,7 +20,7 @@ function createAdminDOM() {
   adminPasswordInput.setAttribute("name", "adminPasswordInput");
   adminPasswordInput.classList.add("admin-input-text");
   adminPasswordInput.setAttribute("placeholder", "Admin Password");
-
+  adminDOM.appendChild(adminPasswordInput);
 
   const findFileButton = document.createElement("button");
   findFileButton.id = "find-file-btn";
@@ -31,19 +31,6 @@ function createAdminDOM() {
     var fileID = fileIDInput.value;
     findFileAdmin(fileID, adminPassword);
   });
-
-  const editFileButton = document.createElement("button");
-  editFileButton.id = "edit-file-btn";
-  editFileButton.classList.add("button");
-  editFileButton.textContent = "Edit File";
-  editFileButton.addEventListener("click", () => {
-    var adminPassword = adminPasswordInput.value;
-    var fileID = fileIDInput.value;
-    editFileAdmin(fileID, adminPassword);
-  });
-
-  adminDOM.appendChild(fileIDInput);
-  adminDOM.appendChild(adminPasswordInput);
   adminDOM.appendChild(findFileButton);
 
   document.body.appendChild(adminContent);
